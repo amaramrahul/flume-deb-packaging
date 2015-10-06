@@ -1,0 +1,30 @@
+diff --git a/flume-ng-sinks/flume-ng-kafka-sink/src/main/java/org/apache/flume/sink/kafka/KafkaSink.java b/flume-ng-sinks/flume-ng-kafka-sink/src/main/java/org/apache/flume/sink/kafka/KafkaSink.java
+index eada17c..38b854b 100644
+--- a/flume-ng-sinks/flume-ng-kafka-sink/src/main/java/org/apache/flume/sink/kafka/KafkaSink.java
++++ b/flume-ng-sinks/flume-ng-kafka-sink/src/main/java/org/apache/flume/sink/kafka/KafkaSink.java
+@@ -98,6 +98,12 @@ public class KafkaSink extends AbstractSink implements Configurable {
+ 
+         if (event == null) {
+           // no events available in channel
++          if(processedEvents == 0) {
++            result = Status.BACKOFF;
++            counter.incrementBatchEmptyCount();
++          } else {
++            counter.incrementBatchUnderflowCount();
++          }
+           break;
+         }
+ 
+diff --git a/flume-ng-sinks/flume-ng-kafka-sink/src/test/java/org/apache/flume/sink/kafka/TestKafkaSink.java b/flume-ng-sinks/flume-ng-kafka-sink/src/test/java/org/apache/flume/sink/kafka/TestKafkaSink.java
+index 80f764f..72117b1 100644
+--- a/flume-ng-sinks/flume-ng-kafka-sink/src/test/java/org/apache/flume/sink/kafka/TestKafkaSink.java
++++ b/flume-ng-sinks/flume-ng-kafka-sink/src/test/java/org/apache/flume/sink/kafka/TestKafkaSink.java
+@@ -168,7 +168,7 @@ public class TestKafkaSink {
+     kafkaSink.start();
+ 
+     Sink.Status status = kafkaSink.process();
+-    if (status == Sink.Status.BACKOFF) {
++    if (status != Sink.Status.BACKOFF) {
+       fail("Error Occurred");
+     }
+     assertNull(

@@ -1,0 +1,24 @@
+flume (1.6.0-4) trusty; urgency=low
+
+  * Added support for JAVA_OPTS environment variable
+
+ -- Rahul Amaram <rahul.amaram@vizury.com>  Thu, 27 Aug 2015 20:19:47 +0530
+
+flume (1.6.0-3) trusty; urgency=low
+
+  * Added patch for High CPU on KafakSink
+    (See https://issues.apache.org/jira/browse/FLUME-2632)
+
+ -- Rahul Amaram <rahul.amaram@vizury.com>  Mon, 24 Aug 2015 18:27:21 +0530
+
+flume (1.6.0-2) trusty; urgency=low
+
+  * Added flume upstart script
+
+ -- Rahul Amaram <rahul.amaram@vizury.com>  Fri, 14 Aug 2015 18:27:21 +0530
+
+flume (1.6.0-1) trusty; urgency=low
+
+  * Initial release
+
+ -- Rahul Amaram <rahul.amaram@vizury.com>  Sat, 21 Mar 2015 21:50:44 +0530

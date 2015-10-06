@@ -1,0 +1,17 @@
+# Defaults for flume
+
+# Set to 0 to start flume agent
+NO_START=1
+
+# agent name
+AGENT_NAME=agent
+
+# conf file location. Ensure that the file exists.
+CONF_FILE=/opt/flume/conf/flume.conf
+
+# Additional args to be passed to flume
+# EXTRA_ARGS="-Dflume.monitoring.type=ganglia -Dflume.monitoring.hosts=gcol1.vizury.internal:8650,gcol2.vizury.internal:8650,gcol3.vizury.internal:8650 -Dflume.root.logger=ERROR,console"
+EXTRA_ARGS="-Dflume.root.logger=ERROR,console"
+
+# Java Options
+# JAVA_OPTS="-Xmx256m"

@@ -1,0 +1,28 @@
+# flume - flume job file
+# See http://upstart.ubuntu.com/cookbook/ for documentation
+
+description "flume"
+author "Rahul Amaram <rahul.amaram@vizury.com>"
+
+# When to start the service
+start on runlevel [2345]
+
+# When to stop the service
+stop on runlevel [016]
+
+# Automatically restart process if crashed
+respawn
+
+# Run before process
+pre-start script
+  [ -f /etc/default/flume ] || { stop; exit 0; }
+  . /etc/default/flume
+  [ "$NO_START" = "0" ] || { stop; exit 0; }
+end script
+
+# Start the process
+script
+  . /etc/default/flume
+  export JAVA_OPTS
+  exec /opt/flume/bin/flume-ng agent --name $AGENT_NAME --conf /opt/flume/conf --conf-file $CONF_FILE $EXTRA_ARGS
+end script

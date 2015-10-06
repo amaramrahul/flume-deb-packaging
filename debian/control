@@ -1,0 +1,11 @@
+Source: flume
+Section: net
+Priority: optional
+Maintainer: Rahul Amaram <rahul.amaram@vizury.com>
+Build-Depends: debhelper (>= 9), maven, default-jdk
+Standards-Version: 3.9.5
+
+Package: flume
+Architecture: all
+Depends: ${misc:Depends}, default-jre
+Description: Apache Flume

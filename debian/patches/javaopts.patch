@@ -1,0 +1,11 @@
+--- a/bin/flume-ng
++++ b/bin/flume-ng
+@@ -249,7 +249,7 @@
+ # set default params
+ FLUME_CLASSPATH=""
+ FLUME_JAVA_LIBRARY_PATH=""
+-JAVA_OPTS="-Xmx20m"
++JAVA_OPTS=${JAVA_OPTS:-"-Xmx20m"}
+ LD_LIBRARY_PATH=""
+ 
+ opt_conf=""
